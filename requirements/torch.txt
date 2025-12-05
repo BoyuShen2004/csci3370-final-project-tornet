@@ -1,0 +1,20 @@
+# Keras 3.0 (using torch backend)
+keras>=3.0
+
+# Torch stack (CPU/GPU decided by environment; can swap pins)
+torch
+torchvision
+torchmetrics
+lightning
+timm
+einops
+
+# Dinov3 deps
+omegaconf
+ftfy
+regex
+submitit
+termcolor
+
+# Shared base
+-r basic.txt

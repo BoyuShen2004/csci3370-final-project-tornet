@@ -1,0 +1,3 @@
+# Single entry point for TorNet (torch backend) + DINOv3
+# Pulls torch stack, DINO extras, core sci/IO deps (incl. netcdf4/h5netcdf)
+-r requirements/torch.txt

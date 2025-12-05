@@ -1,0 +1,84 @@
+cpu-bind=MASK - g004, task  0  0 [3081666]: mask 0xffef80000000000 set
+2025-12-05 00:20:47,051 - INFO - Starting supervised classification training
+2025-12-05 00:20:47,051 - INFO - Project root: /projects/weilab/shenb/csci3370/code_submission/dinov3_vit
+2025-12-05 00:20:47,051 - INFO - Base output directory: /projects/weilab/shenb/csci3370/code_submission/outputs
+2025-12-05 00:20:47,051 - INFO - Output directory: /projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None
+2025-12-05 00:20:47,051 - INFO - Checkpoint directory: /projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None/checkpoints
+2025-12-05 00:20:47,051 - INFO - Config: {'data': {'data_root': '/projects/weilab/shenb/csci3370/data', 'train_years': [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'val_years': [2021, 2022], 'use_catalog_type': True, 'use_temporal_val': True, 'julian_modulo': 20, 'training_threshold': 17, 'variables': ['DBZ', 'VEL', 'KDP', 'RHOHV', 'ZDR', 'WIDTH'], 'random_state': 1234, 'val_split': 0.1}, 'model': {'pretrained_checkpoint': '/projects/weilab/shenb/csci3370/code_submission/dinov3_vit/pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth', 'img_size': 384, 'patch_size': 16, 'embed_dim': 384, 'hidden_dim': 256, 'dropout': 0.5, 'use_cls_token': True}, 'training': {'batch_size': 64, 'num_epochs': 20, 'learning_rate': 0.0003, 'weight_decay': 0.01, 'warmup_epochs': 5, 'freeze_encoder_epochs': 3, 'num_workers': 16, 'pin_memory': True, 'use_augmentation': True, 'use_class_balancing': True, 'loss_type': 'focal', 'focal_alpha': 0.25, 'focal_gamma': 2.0, 'label_smoothing': 0.1, 'oversample_ratio': 1.5, 'class_balanced_beta': 0.9999, 'focal_weight': 0.8, 'dice_weight': 0.2, 'use_mixed_precision': True, 'use_torch_compile': True, 'val_freq': 1}, 'output': {'checkpoint_dir': '/projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None/checkpoints', 'checkpoint_freq': 10, 'log_freq': 20}, 'device': 'cuda'}
+2025-12-05 00:20:47,053 - INFO - Saved config to: /projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None/config.yaml
+2025-12-05 00:20:47,054 - INFO - Saved params to: /projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None/params.json
+2025-12-05 00:20:47,159 - INFO - Using device: cuda
+2025-12-05 00:20:47,159 - INFO - TORNET_ROOT: /projects/weilab/shenb/csci3370/data
+2025-12-05 00:20:47,159 - INFO - Using temporal validation split (tornet_enhanced style)
+2025-12-05 00:20:47,159 - INFO -   Training years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2025-12-05 00:20:47,160 - INFO -   Validation years: [2021, 2022]
+2025-12-05 00:20:47,160 - INFO - Creating training dataset from years [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]...
+2025-12-05 00:21:22,626 - INFO - Creating validation dataset from years [2021, 2022]...
+2025-12-05 00:21:58,056 - INFO - Training dataset size: 171666
+2025-12-05 00:21:58,056 - INFO -   Class distribution: Positive=0.074, Negative=0.926
+2025-12-05 00:21:58,057 - INFO - Validation dataset size: 41187
+2025-12-05 00:21:58,057 - INFO -   Class distribution: Positive=0.047, Negative=0.953
+2025-12-05 00:21:58,058 - INFO - Updated data.json with dataset information
+2025-12-05 00:21:58,058 - INFO - ================================================================================
+2025-12-05 00:21:58,058 - INFO - Using natural data distribution (tornet_enhanced approach)
+2025-12-05 00:21:58,058 - INFO -   - Dataset shuffles file_list at initialization (like tornet_enhanced shuffles catalog)
+2025-12-05 00:21:58,058 - INFO -   - DataLoader shuffles each epoch for additional randomness
+2025-12-05 00:21:58,058 - INFO -   - Focal Loss with pos_weight handles class imbalance
+2025-12-05 00:21:58,058 - INFO -   - With 7.4% positives and batch_size=64, expect ~4 positives per batch on average
+2025-12-05 00:21:58,058 - INFO - ================================================================================
+2025-12-05 00:21:58,058 - INFO - Creating classification model...
+2025-12-05 00:21:58,058 - INFO - Pretrained checkpoint path: /projects/weilab/shenb/csci3370/code_submission/dinov3_vit/pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth
+2025-12-05 00:21:58,058 - INFO - Found pretrained checkpoint at /projects/weilab/shenb/csci3370/code_submission/dinov3_vit/pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth
+2025-12-05 00:21:58,976 - INFO - using base=100 for rope new
+2025-12-05 00:21:58,977 - INFO - using min_period=None for rope new
+2025-12-05 00:21:58,977 - INFO - using max_period=None for rope new
+2025-12-05 00:21:58,977 - INFO - using normalize_coords=separate for rope new
+2025-12-05 00:21:58,977 - INFO - using shift_coords=None for rope new
+2025-12-05 00:21:58,977 - INFO - using rescale_coords=2 for rope new
+2025-12-05 00:21:58,977 - INFO - using jitter_coords=None for rope new
+2025-12-05 00:21:58,977 - INFO - using dtype=fp32 for rope new
+2025-12-05 00:21:58,977 - INFO - using mlp layer as FFN
+2025-12-05 00:21:59,459 - INFO - Classification head bias initialized to -2.5268 (matching class distribution)
+2025-12-05 00:21:59,459 - INFO -   Class distribution: pos_ratio=0.0740, neg_ratio=0.9260
+2025-12-05 00:21:59,459 - INFO -   Model will start predicting ~7.4% positives (prevents collapse to all negatives)
+2025-12-05 00:21:59,459 - INFO - Freezing encoder for first 3 epochs (training only new layers)
+2025-12-05 00:21:59,459 - INFO - Encoder frozen. Only new layers (channel_proj, feature_combiner, classification_head) will be trained.
+2025-12-05 00:21:59,459 - INFO - Compiling model with torch.compile for faster training...
+2025-12-05 00:22:00,414 - INFO - Model compiled successfully
+2025-12-05 00:22:00,415 - INFO - Total parameters: 22,261,852
+2025-12-05 00:22:00,415 - INFO - Trainable parameters: 660,700
+2025-12-05 00:22:00,415 - INFO - Using FocalLoss (tornet_enhanced style): alpha=0.25, gamma=2.0
+2025-12-05 00:22:00,415 - INFO -   NO pos_weight (tornet_enhanced approach - alpha handles class imbalance)
+2025-12-05 00:22:00,415 - INFO -   label_smoothing=0.1 (prevents overconfidence)
+2025-12-05 00:22:00,416 - INFO -   Natural distribution with Focal Loss (no oversampling needed)
+2025-12-05 00:22:00,416 - INFO - Loss type: focal
+2025-12-05 00:22:00,416 - INFO - Using differential learning rates:
+2025-12-05 00:22:00,416 - INFO -   Encoder (pretrained): 0.000030 (fine-tuning)
+2025-12-05 00:22:00,416 - INFO -   New layers (head, channel_proj, feature_combiner): 0.001500 (learning from scratch)
+2025-12-05 00:22:00,416 - INFO -   Encoder params: 21,601,152
+2025-12-05 00:22:00,416 - INFO -   New layer params: 660,700
+2025-12-05 00:22:00,417 - INFO - Starting training...
+2025-12-05 00:22:00,417 - INFO - Total epochs: 20
+2025-12-05 00:22:00,417 - INFO - Batches per epoch (train): 2682
+2025-12-05 00:22:00,417 - INFO - Batches per epoch (val): 644
+2025-12-05 00:22:00,417 - INFO - Progress will be printed every 20 batches (running averages over last 20 batches)
+2025-12-05 00:22:00,417 - INFO -   This reduces log size for long training runs (e.g., day-long training)
+2025-12-05 00:22:00,418 - INFO - No checkpoint found, starting training from scratch
+2025-12-05 00:22:00,418 - INFO - Mixed precision training enabled (FP16/BF16)
+2025-12-05 00:22:00,418 - INFO - Validation frequency: every 1 epoch(s)
+2025-12-05 00:22:28,667 - INFO - Epoch 1 | Batch     1/2682 | Loss: 0.0447 | Acc: 0.9219 | AUC: 0.56102 | AUCPR: 0.1122 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 5 TN: 59 | Pos: 5.0/64 (avg over last 1 batches)
+2025-12-05 00:23:35,696 - INFO - Epoch 1 | Batch    20/2682 | Loss: 0.0414 | Acc: 0.9305 | AUC: 0.48814 | AUCPR: 0.1137 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 89 TN: 1191 | Pos: 4.5/64 (avg over last 20 batches)
+2025-12-05 00:24:44,591 - INFO - Epoch 1 | Batch    40/2682 | Loss: 0.0372 | Acc: 0.9375 | AUC: 0.48373 | AUCPR: 0.1037 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 160 TN: 2400 | Pos: 4.0/64 (avg over last 20 batches)
+2025-12-05 00:25:55,396 - INFO - Epoch 1 | Batch    60/2682 | Loss: 0.0394 | Acc: 0.9336 | AUC: 0.49054 | AUCPR: 0.1016 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 255 TN: 3585 | Pos: 4.2/64 (avg over last 20 batches)
+2025-12-05 00:27:04,902 - INFO - Epoch 1 | Batch    80/2682 | Loss: 0.0394 | Acc: 0.9332 | AUC: 0.48779 | AUCPR: 0.1103 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 342 TN: 4778 | Pos: 4.3/64 (avg over last 20 batches)
+2025-12-05 00:28:14,797 - INFO - Epoch 1 | Batch   100/2682 | Loss: 0.0390 | Acc: 0.9339 | AUC: 0.48676 | AUCPR: 0.1114 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 423 TN: 5977 | Pos: 4.2/64 (avg over last 20 batches)
+2025-12-05 00:29:22,932 - INFO - Epoch 1 | Batch   120/2682 | Loss: 0.0388 | Acc: 0.9337 | AUC: 0.49943 | AUCPR: 0.1173 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 509 TN: 7171 | Pos: 4.2/64 (avg over last 20 batches)
+2025-12-05 00:30:31,476 - INFO - Epoch 1 | Batch   140/2682 | Loss: 0.0392 | Acc: 0.9325 | AUC: 0.50607 | AUCPR: 0.1213 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 605 TN: 8355 | Pos: 4.3/64 (avg over last 20 batches)
+2025-12-05 00:31:40,496 - INFO - Epoch 1 | Batch   160/2682 | Loss: 0.0394 | Acc: 0.9316 | AUC: 0.51393 | AUCPR: 0.1264 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 700 TN: 9540 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:32:50,035 - INFO - Epoch 1 | Batch   180/2682 | Loss: 0.0394 | Acc: 0.9313 | AUC: 0.51893 | AUCPR: 0.1294 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 791 TN: 10729 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:34:01,887 - INFO - Epoch 1 | Batch   200/2682 | Loss: 0.0391 | Acc: 0.9316 | AUC: 0.52727 | AUCPR: 0.1346 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 876 TN: 11924 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:35:12,037 - INFO - Epoch 1 | Batch   220/2682 | Loss: 0.0391 | Acc: 0.9310 | AUC: 0.53381 | AUCPR: 0.1394 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 971 TN: 13109 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:36:23,476 - INFO - Epoch 1 | Batch   240/2682 | Loss: 0.0389 | Acc: 0.9310 | AUC: 0.53957 | AUCPR: 0.1437 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 1060 TN: 14300 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:37:33,919 - INFO - Epoch 1 | Batch   260/2682 | Loss: 0.0388 | Acc: 0.9308 | AUC: 0.54626 | AUCPR: 0.1453 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 1151 TN: 15489 | Pos: 4.4/64 (avg over last 20 batches)
+2025-12-05 00:38:43,927 - INFO - Epoch 1 | Batch   280/2682 | Loss: 0.0388 | Acc: 0.9303 | AUC: 0.54930 | AUCPR: 0.1458 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 1249 TN: 16671 | Pos: 4.5/64 (avg over last 20 batches)
+2025-12-05 00:39:54,586 - INFO - Epoch 1 | Batch   300/2682 | Loss: 0.0382 | Acc: 0.9308 | AUC: 0.55736 | AUCPR: 0.1534 | F1: 0.0000 | Prec: 0.0000 | Rec: 0.0000 | TP: 0 FP: 0 FN: 1329 TN: 17871 | Pos: 4.4/64 (avg over last 20 batches)

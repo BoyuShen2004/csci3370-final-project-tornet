@@ -1,0 +1,65 @@
+# Supervised Classification Training Configuration
+# Matches tornet_enhanced data partitioning exactly
+
+# Data paths (TORNET_ROOT will be set from environment variable)
+data:
+  data_root: /projects/weilab/shenb/csci3370/data  # Override via TORNET_ROOT env var
+  train_years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]  # Training years (matches tornet_enhanced exactly)
+  val_years: [2021, 2022]  # Validation years (temporal split, tornet_enhanced style - overlaps with train_years like tornet_enhanced)
+  use_catalog_type: true  # CRITICAL: Use catalog's 'type' column (tornet_enhanced style) - Julian Day Modulo clusters positives incorrectly!
+  use_temporal_val: true  # Use temporal validation split (recent years) - matches tornet_enhanced, NO need to read labels!
+  # Julian Day Modulo parameters (only used if use_catalog_type=false)
+  julian_modulo: 20
+  training_threshold: 17  # J(te) mod 20 < 17 for training, >= 17 for test
+  variables: ["DBZ", "VEL", "KDP", "RHOHV", "ZDR", "WIDTH"]
+  random_state: 1234
+  # val_split is ignored when use_temporal_val=true
+  val_split: 0.1  # 10% of training data for validation (only used if use_temporal_val=false)
+
+# Model
+model:
+  # Override via DINOV3_PRETRAINED env var
+  pretrained_checkpoint: pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth
+  img_size: 384
+  patch_size: 16
+  embed_dim: 384
+  hidden_dim: 256
+  dropout: 0.5
+  use_cls_token: true
+
+# Training
+training:
+  batch_size: 64  # Increased from 32 for faster training (adjust if OOM)
+  num_epochs: 20  # Matches tornet_enhanced (20 epochs is sufficient with proper initialization)
+  learning_rate: 0.0003  # Increased for better convergence; with differential LR, encoder gets 0.00003, new layers get 0.0015
+  weight_decay: 0.01
+  warmup_epochs: 5
+  freeze_encoder_epochs: 3  # Freeze encoder for first N epochs, train only new layers
+  num_workers: 16  # Increased from 8 for faster data loading
+  pin_memory: true
+  use_augmentation: true
+  use_class_balancing: true
+  # Note: GuaranteedPositiveSampler is always used (ensures at least 1 positive per batch)
+  loss_type: focal  # Options: focal, class_balanced, combined, bce
+  focal_alpha: 0.25  # tornet_enhanced: 0.25 (works better with oversampling)
+  focal_gamma: 2.0  # tornet_enhanced: 2.0 (moderate focusing)
+  label_smoothing: 0.1  # tornet_enhanced: 0.1 (prevents overconfidence)
+  oversample_ratio: 1.5  # CRITICAL: Oversample positive examples in batches (like tornet_enhanced)
+  class_balanced_beta: 0.9999
+  focal_weight: 0.8
+  dice_weight: 0.2
+  # Performance optimizations
+  use_mixed_precision: true  # FP16/BF16 for 1.5-2x speedup
+  use_torch_compile: true  # PyTorch 2.0+ compilation for 20-30% speedup
+  val_freq: 1  # Validate every N epochs (1 = every epoch, 2 = every 2 epochs, etc.)
+
+# Output
+output:
+  # Base output directory; run subfolder will be dino_supervised_<timestamp>-<JOBID>-None
+  checkpoint_dir: /projects/weilab/shenb/csci3370/code_submission/outputs  # Override via env if desired
+  checkpoint_freq: 10
+  log_freq: 20  # Log every 20 batches to .out file (detailed progress metrics)
+
+# Device
+device: cuda
+

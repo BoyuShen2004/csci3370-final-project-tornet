@@ -1,0 +1,32 @@
+# Inference Configuration
+# Run inference and evaluation on test/validation data
+
+# Model
+model:
+  # Override via DINOV3_FINETUNE_CKPT env var
+  checkpoint: outputs/dino_finetune_latest/checkpoints/checkpoint_best.pth
+  img_size: 384
+  patch_size: 16
+  embed_dim: 384
+  hidden_dim: 256
+  dropout: 0.5
+  use_cls_token: true
+
+# Data paths (TORNET_ROOT will be set from environment variable)
+data:
+  data_root: /projects/weilab/shenb/csci3370/data  # Override via TORNET_ROOT env var
+  years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+  julian_modulo: 20
+  training_threshold: 17
+  variables: ["DBZ", "VEL", "KDP", "RHOHV", "ZDR", "WIDTH"]
+  random_state: 1234
+  output_dir: inference/output  # Will be overridden by unique output directory
+
+# Inference
+inference:
+  batch_size: 32
+  num_workers: 8
+
+# Device
+device: cuda
+

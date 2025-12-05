@@ -1,0 +1,27 @@
+>>> Starting DINOv3 supervised pretraining...
+>>> Job ID: 1853606
+>>> Start time: Fri Dec  5 12:20:43 AM EST 2025
+>>> TORNET_ROOT: /projects/weilab/shenb/csci3370/data
+>>> ENCODER:     /projects/weilab/shenb/csci3370/code_submission/dinov3_vit/pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth
+>>> GPU info:
+Fri Dec  5 00:20:44 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 12.9     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:17:00.0 Off |                    0 |
+| N/A   25C    P0             33W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+==========================================

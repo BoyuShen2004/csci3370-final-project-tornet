@@ -1,0 +1,9 @@
+{
+  "model_name": "dino_supervised_20251205002047-1853606-None",
+  "job_id": "1853606",
+  "timestamp": "20251205002047",
+  "train_size": 171666,
+  "val_size": 41187,
+  "train_pos_ratio": 0.074,
+  "val_pos_ratio": 0.047
+}

@@ -1,0 +1,56 @@
+# Fine-tuning Configuration
+# Supervised classification training on training split only
+
+# Data paths (TORNET_ROOT will be set from environment variable)
+data:
+  data_root: /projects/weilab/shenb/csci3370/data  # Override via TORNET_ROOT env var
+  years: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+  julian_modulo: 20
+  training_threshold: 17
+  variables: ["DBZ", "VEL", "KDP", "RHOHV", "ZDR", "WIDTH"]
+  random_state: 1234
+
+# Model
+model:
+  # Override via DINOV3_SUPERVISED_CKPT env var
+  encoder_checkpoint: outputs/dino_supervised_latest/checkpoints/checkpoint_best.pth
+  img_size: 384
+  patch_size: 16
+  embed_dim: 384
+  hidden_dim: 256
+  dropout: 0.5
+  use_cls_token: true
+
+# Training
+training:
+  batch_size: 32
+  num_epochs: 30  # Maximum epochs (early stopping may stop earlier)
+  learning_rate: 0.0001  # Base learning rate
+  encoder_lr_multiplier: 0.1  # Encoder LR = base_lr * 0.1
+  head_lr_multiplier: 5.0  # Classification head LR = base_lr * 5.0
+  weight_decay: 0.01
+  warmup_epochs: 5
+  early_stopping_patience: 5  # Stop training if no improvement for 5 epochs (0 = disabled)
+  num_workers: 8
+  pin_memory: true
+  use_augmentation: true
+  use_class_balancing: true
+  use_balanced_batch_sampler: true  # Use BalancedBatchSampler that guarantees positives in every batch
+  min_positives_per_batch: 2  # Minimum positive examples per batch
+  target_pos_ratio: 0.3  # Target 30% positives per batch
+  loss_type: focal  # Options: focal, class_balanced, combined, bce
+  focal_alpha: 0.5
+  focal_gamma: 2.0  # Increased from 1.5 to focus more on hard examples
+  class_balanced_beta: 0.9999
+  focal_weight: 0.8
+  dice_weight: 0.2
+
+# Output
+output:
+  checkpoint_dir: finetune/output
+  checkpoint_freq: 10
+  log_freq: 20  # Log every 20 batches to .out file (detailed progress metrics)
+
+# Device
+device: cuda
+

@@ -1,0 +1,21 @@
+# Core scientific stack
+numpy
+scipy
+pandas
+scikit-learn
+pyyaml
+tqdm
+
+# IO and data handling
+xarray
+tifffile
+h5py
+pillow
+requests
+netcdf4
+h5netcdf
+
+# Plotting/visualization used by evaluation scripts
+matplotlib
+seaborn
+

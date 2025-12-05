@@ -1,0 +1,64 @@
+data:
+  data_root: /projects/weilab/shenb/csci3370/data
+  train_years:
+  - 2013
+  - 2014
+  - 2015
+  - 2016
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  val_years:
+  - 2021
+  - 2022
+  use_catalog_type: true
+  use_temporal_val: true
+  julian_modulo: 20
+  training_threshold: 17
+  variables:
+  - DBZ
+  - VEL
+  - KDP
+  - RHOHV
+  - ZDR
+  - WIDTH
+  random_state: 1234
+  val_split: 0.1
+model:
+  pretrained_checkpoint: /projects/weilab/shenb/csci3370/code_submission/dinov3_vit/pretrained/dinov3_vits16_pretrain_lvd1689m-08c60483.pth
+  img_size: 384
+  patch_size: 16
+  embed_dim: 384
+  hidden_dim: 256
+  dropout: 0.5
+  use_cls_token: true
+training:
+  batch_size: 64
+  num_epochs: 20
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  warmup_epochs: 5
+  freeze_encoder_epochs: 3
+  num_workers: 16
+  pin_memory: true
+  use_augmentation: true
+  use_class_balancing: true
+  loss_type: focal
+  focal_alpha: 0.25
+  focal_gamma: 2.0
+  label_smoothing: 0.1
+  oversample_ratio: 1.5
+  class_balanced_beta: 0.9999
+  focal_weight: 0.8
+  dice_weight: 0.2
+  use_mixed_precision: true
+  use_torch_compile: true
+  val_freq: 1
+output:
+  checkpoint_dir: /projects/weilab/shenb/csci3370/code_submission/outputs/dino_supervised_20251205002047-1853606-None/checkpoints
+  checkpoint_freq: 10
+  log_freq: 20
+device: cuda
