@@ -1,0 +1,4 @@
+model_path: /projects/weilab/shenb/csci3370/code_submission/outputs/tornado_enhanced_latest/checkpoints/tornadoDetector_008.keras
+data_root: /projects/weilab/shenb/csci3370/data
+keras_backend: torch
+
