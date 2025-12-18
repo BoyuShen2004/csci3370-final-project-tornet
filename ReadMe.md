@@ -4,4 +4,4 @@ This repository contains the code and experiments for improving tornado detectio
 
 The enhanced CNN improves PR AUC, ROC AUC, and CSI over the MIT Lincoln Laboratory baseline, while DINOv3 underperforms due to domain mismatch between natural images and polarimetric radar data.
 
-See the final report for full methodology, experiments, and results. :contentReference[oaicite:0]{index=0}
+See the final report for full methodology, experiments, and results.
