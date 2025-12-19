@@ -39,18 +39,17 @@ ls -lah logs/
 Contribution
 --------------------------------------------------
 
-Boyu (Ethan) Shen
-- Implemented the TorNet data ingestion pipeline, including radar preprocessing, normalization, channel assembly, and visualization of representative samples.
-- Designed and wrote the Method section, including the enhanced CNN architecture, residual-block formulation, loss functions, sampling strategy, and the full DINOv3 transfer-learning pipeline.
-- Executed and documented the full Experiments section: HPC job scheduling, training runs, compute accounting, metric reporting, and ablation commentary.
+Joint Work (core pipeline + results reproduction)
+- End-to-end enhanced CNN training + evaluation workflow (integration + final config): `tornet_enhanced/`, `tornet_enhanced/configs/`, `tornet_enhanced/scripts/tornado_detection/`, `slurm_scripts/tornet_enhanced_train.sl`, `slurm_scripts/tornet_enhanced_eval.sl`
+- Metrics, reporting, and baseline comparison used in the final writeup: `tornet_enhanced/tornet/metrics/`, `tornet_enhanced/tornet/models/keras/imbalanced_metrics.py`, `outputs/`, `baseline_results.png`, `class_composition.png`
+- Reproducible cluster runs + logging outputs from SLURM experiments: `slurm_scripts/`, `slurm_scripts/logs/`, `outputs/`
+- Repo-level documentation and final deliverables packaging: `ReadMe.md`, `tornet_enhanced/ReadMe.md`, `aies-AIES-D-24-0006.1.pdf`
 
-Brendan Keller
-- Implemented evaluation utilities for ROC AUC, PR AUC, CSI, HSS, and confusion matrices, and reproduced the MIT LL baseline metrics for comparison.
-- Wrote the Introduction, Related Work, and Conclusion sections, framing the technical context, prior literature, and the discussion and implications of the experimental findings.
+Boyu (Ethan) Shen (data + modeling + DINOv3 track)
+- DINOv3 transfer-learning implementation (data loading, model head/projection, focal/imbalanced losses, training stages, inference): `dinov3_vit/classification_model.py`, `dinov3_vit/data_loader_tornet.py`, `dinov3_vit/imbalanced_losses.py`, `dinov3_vit/supervised_pretrain/`, `dinov3_vit/finetune/`, `dinov3_vit/inference/`, `slurm_scripts/dinov3_supervised_pretrain.sl`, `slurm_scripts/dinov3_finetune.sl`, `slurm_scripts/dinov3_inference.sl`
+- Environment setup and dependency wiring for the repo: `create_tornet2_env.sh`, `requirements.txt`, `requirements/`
+- Experiment artifacts and run bookkeeping for model training: `outputs/` (both `tornado_enhanced_*` and `dino_supervised_*` runs), plus associated configs/logs in those folders
 
-Joint Work
-- Co-designed and implemented the enhanced CNN training procedure in PyTorch, including optimizer configuration, cosine warmup scheduling, and focal-loss tuning.
-- Conducted hyperparameter tuning (learning rate, batch size, augmentation strength, focal-loss γ, oversampling ratio) and jointly selected the final model configuration.
-- Performed literature review on radar-based tornado detection, class-imbalance strategies, CNN inductive biases, and vision-transformer learning.
-- Managed GitHub documentation, milestone updates, and TA/professor check-ins.
-- Delivered the final presentation.
+Brendan Keller (evaluation + baseline reproduction tooling)
+- Evaluation utilities for ROC AUC / PR AUC / CSI / HSS and confusion-matrix based reporting used across experiments: components under `tornet_enhanced/tornet/metrics/` and evaluation-side logic invoked by `tornet_enhanced/scripts/tornado_detection/test_enhanced_tornet_keras.py` and `slurm_scripts/tornet_enhanced_eval.sl`
+- Baseline metric reproduction and comparison outputs used to generate/verify reported numbers: evaluation scripts + output verification under `tornet_enhanced/` and `outputs/`, including the final comparison figures (`baseline_results.png`) as referenced in the report
