@@ -43,7 +43,7 @@ Joint Work (core pipeline + results reproduction)
 - End-to-end enhanced CNN training + evaluation workflow (integration + final config): `tornet_enhanced/`, `tornet_enhanced/configs/`, `tornet_enhanced/scripts/tornado_detection/`, `slurm_scripts/tornet_enhanced_train.sl`, `slurm_scripts/tornet_enhanced_eval.sl`
 - Metrics, reporting, and baseline comparison used in the final writeup: `tornet_enhanced/tornet/metrics/`, `tornet_enhanced/tornet/models/keras/imbalanced_metrics.py`, `outputs/`, `baseline_results.png`, `class_composition.png`
 - Reproducible cluster runs + logging outputs from SLURM experiments: `slurm_scripts/`, `slurm_scripts/logs/`, `outputs/`
-- Repo-level documentation and final deliverables packaging: `ReadMe.md`, `tornet_enhanced/ReadMe.md`, `aies-AIES-D-24-0006.1.pdf`
+- Repo-level documentation and final deliverables packaging: `ReadMe.md`, `tornet_enhanced/ReadMe.md`, `CSCI3370_Final_Report.pdf`
 
 Boyu (Ethan) Shen (data + modeling + DINOv3 track)
 - DINOv3 transfer-learning implementation (data loading, model head/projection, focal/imbalanced losses, training stages, inference): `dinov3_vit/classification_model.py`, `dinov3_vit/data_loader_tornet.py`, `dinov3_vit/imbalanced_losses.py`, `dinov3_vit/supervised_pretrain/`, `dinov3_vit/finetune/`, `dinov3_vit/inference/`, `slurm_scripts/dinov3_supervised_pretrain.sl`, `slurm_scripts/dinov3_finetune.sl`, `slurm_scripts/dinov3_inference.sl`
