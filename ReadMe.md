@@ -18,14 +18,18 @@ cd slurm_scripts
 
 Train + evaluate Enhanced CNN:
 
+```
 sbatch tornet_enhanced_train.sl
 sbatch tornet_enhanced_eval.sl
+```
 
 DINOv3 pipeline (supervised adaptation + fine-tune + inference):
 
+```
 sbatch dinov3_supervised_pretrain.sl
 sbatch dinov3_finetune.sl
 sbatch dinov3_inference.sl
+```
 
 Logs are written under:
 
